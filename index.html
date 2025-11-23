@@ -3,362 +3,505 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>英语时态练习 (200题)</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#165DFF',
-                        secondary: '#6B7280',
-                        success: '#10B981',
-                        danger: '#EF4444',
-                        warning: '#F59E0B',
-                        light: '#F3F4F6',
-                        dark: '#1F2937'
-                    },
-                    fontFamily: {
-                        inter: ['Inter', 'sans-serif'],
-                    },
-                }
-            }
+    <title>毛概100题精华题库 - 专插本备考</title>
+    <style>
+        :root {
+            --primary-color: #d32f2f; /* 红色主调 */
+            --bg-color: #f5f5f5;
+            --card-bg: #ffffff;
+            --text-color: #333;
+            --success-color: #4caf50;
+            --error-color: #f44336;
         }
-    </script>
-    <style type="text/tailwindcss">
-        @layer utilities {
-            .content-auto {
-                content-visibility: auto;
-            }
-            .card-shadow {
-                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            }
-            .btn-hover {
-                transition: all 0.2s ease-in-out;
-            }
-            .btn-hover:hover {
-                transform: translateY(-2px);
-            }
-            .progress-bar {
-                transition: width 0.5s ease-in-out;
-            }
+
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
         }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+        }
+
+        /* Tabs Navigation */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            border: none;
+            background: #ddd;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Question Cards */
+        .question-card {
+            background: var(--card-bg);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: none; /* Hidden by default */
+        }
+
+        .question-card.active-type {
+            display: block;
+        }
+
+        .q-title {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        .q-type-badge {
+            display: inline-block;
+            background: #eee;
+            color: #666;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        /* Options */
+        .options {
+            list-style: none;
+            padding: 0;
+        }
+
+        .option-item {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .option-item:hover {
+            background-color: #fafafa;
+        }
+
+        /* States for Single/Multi Choice */
+        .option-item.selected {
+            background-color: #e3f2fd;
+            border-color: #2196f3;
+        }
+
+        .option-item.correct {
+            background-color: #e8f5e9;
+            border-color: var(--success-color);
+            color: var(--success-color);
+        }
+
+        .option-item.wrong {
+            background-color: #ffebee;
+            border-color: var(--error-color);
+            color: var(--error-color);
+        }
+
+        /* Analysis Box */
+        .analysis-box {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #fff8e1;
+            border-left: 5px solid #ffc107;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .show-analysis {
+            display: block;
+        }
+
+        .btn-submit {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .btn-show-ans {
+            background-color: #2196f3;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        /* For Short Answer / Essay */
+        .text-answer-area {
+            white-space: pre-wrap;
+            color: #555;
+            line-height: 1.8;
+        }
+
     </style>
 </head>
-<body class="bg-gray-50 font-inter text-dark">
-    <div class="min-h-screen flex flex-col">
-        <!-- 顶部导航栏 -->
-        <header class="bg-white shadow-md">
-            <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
-                <div class="flex items-center mb-4 md:mb-0">
-                    <i class="fa-solid fa-book-open text-primary text-3xl mr-3"></i>
-                    <h1 class="text-2xl font-bold text-dark">英语时态练习 <span class="text-primary">(200题)</span></h1>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <div class="text-center">
-                        <div class="text-sm text-secondary">当前进度</div>
-                        <div class="text-xl font-bold" id="progress-text">0/0</div>
-                    </div>
-                    <div class="w-32 h-2 bg-gray-200 rounded-full overflow-hidden">
-                        <div id="progress-bar" class="progress-bar h-full bg-primary w-0"></div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-sm text-secondary">正确率</div>
-                        <div class="text-xl font-bold text-success" id="accuracy-text">0%</div>
-                    </div>
-                </div>
-            </div>
-        </header>
+<body>
 
-        <!-- 主内容区 -->
-        <main class="flex-grow container mx-auto px-4 py-8">
-            <!-- 分类选择 -->
-            <div class="bg-white rounded-xl p-6 mb-8 shadow-md">
-                <h2 class="text-xl font-semibold mb-4">选择时态分类</h2>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="category-list">
-                    <!-- 分类按钮将通过JavaScript动态生成 -->
-                </div>
-            </div>
-
-            <!-- 题目卡片 -->
-            <div id="question-container" class="max-w-3xl mx-auto">
-                <!-- 初始提示 -->
-                <div id="initial-prompt" class="bg-white rounded-xl p-8 text-center shadow-md">
-                    <i class="fa-solid fa-arrow-up text-4xl text-gray-300 mb-4"></i>
-                    <h3 class="text-xl font-medium text-gray-500">请从上方选择一个时态分类开始练习</h3>
-                </div>
-
-                <!-- 题目内容 (默认隐藏) -->
-                <div id="question-card" class="bg-white rounded-xl overflow-hidden shadow-md hidden">
-                    <div class="bg-primary text-white p-4">
-                        <div class="flex justify-between items-center">
-                            <span id="current-category" class="font-medium"></span>
-                            <span id="current-question-count" class="font-medium"></span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 id="question-text" class="text-xl font-semibold mb-6"></h3>
-                        <div id="options-container" class="space-y-3 mb-6">
-                            <!-- 选项将通过JavaScript动态生成 -->
-                        </div>
-                        <button id="next-btn" class="btn-hover bg-primary hover:bg-primary/90 text-white font-medium py-2 px-4 rounded-lg shadow-md hidden">
-                            下一题 <i class="fa-solid fa-arrow-right ml-2"></i>
-                        </button>
-                    </div>
-                    <!-- 答案解析 (默认隐藏) -->
-                    <div id="explanation-container" class="bg-gray-50 p-6 border-t border-gray-200 hidden">
-                        <h4 class="font-semibold text-lg mb-2 flex items-center">
-                            <i id="explanation-icon" class="mr-2"></i>
-                            <span id="explanation-title"></span>
-                        </h4>
-                        <p id="correct-answer" class="mb-2 font-medium"></p>
-                        <p id="explanation-text"></p>
-                    </div>
-                </div>
-            </div>
-        </main>
-
-        <!-- 页脚 -->
-        <footer class="bg-dark text-white py-6">
-            <div class="container mx-auto px-4 text-center">
-                <p>英语时态练习 (200题) - 祝您学习愉快！</p>
-            </div>
-        </footer>
+<div class="container">
+    <h1>《毛概》100题精华题库</h1>
+    
+    <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('single')">单选题</button>
+        <button class="tab-btn" onclick="switchTab('multi')">多选题</button>
+        <button class="tab-btn" onclick="switchTab('judge')">辨析题</button>
+        <button class="tab-btn" onclick="switchTab('short')">简答/论述</button>
     </div>
 
-    <script>
-        // 题目数据
-        const questionData = {
-            "一般现在时": [
-                { question: "He ______ (play) basketball every Saturday.", answer: "plays", options: ["play", "plays", "played", "is playing"], explanation: "第三人称单数，标志词every Saturday" },
-                { question: "We ______ (not watch) TV in the morning.", answer: "don't watch", options: ["not watch", "doesn't watch", "don't watch", "didn't watch"], explanation: "否定式，主语复数" },
-                { question: "My mother always ______ (cook) delicious food.", answer: "cooks", options: ["cook", "cooks", "cooked", "is cooking"], explanation: "第三人称单数，标志词always" },
-                { question: "______ you ______ (like) coffee?", answer: "Do; like", options: ["Do; like", "Does; like", "Are; like", "Did; like"], explanation: "一般疑问句，主语第二人称" },
-                { question: "The earth ______ (go) around the sun.", answer: "goes", options: ["go", "goes", "went", "is going"], explanation: "客观真理，用一般现在时" },
-                { question: "They ______ (study) English twice a week.", answer: "study", options: ["study", "studies", "studied", "are studying"], explanation: "主语复数，标志词twice a week" },
-                { question: "Tom ______ (not finish) his homework late.", answer: "doesn't finish", options: ["not finish", "doesn't finish", "don't finish", "didn't finish"], explanation: "否定式，第三人称单数" },
-                { question: "She ______ (be) a doctor.", answer: "is", options: ["is", "are", "was", "were"], explanation: "主谓一致，主语she" },
-                { question: "The train ______ (leave) at 7:00 a.m. every day.", answer: "leaves", options: ["leave", "leaves", "left", "is leaving"], explanation: "表时刻表，用一般现在时" },
-                { question: "Birds ______ (fly) south in winter.", answer: "fly", options: ["fly", "flies", "flew", "are flying"], explanation: "主语复数，客观事实" }
-            ],
-            "一般过去时": [
-                { question: "I ______ (go) to the park yesterday.", answer: "went", options: ["go", "goes", "went", "gone"], explanation: "标志词yesterday，不规则动词" },
-                { question: "She ______ (not eat) breakfast this morning.", answer: "didn't eat", options: ["not eat", "doesn't eat", "don't eat", "didn't eat"], explanation: "否定式，标志词this morning表过去" },
-                { question: "They ______ (see) a movie last night.", answer: "saw", options: ["see", "sees", "saw", "seen"], explanation: "不规则动词，标志词last night" },
-                { question: "______ he ______ (visit) his uncle last week?", answer: "Did; visit", options: ["Do; visit", "Does; visit", "Did; visit", "Was; visiting"], explanation: "一般疑问句，标志词last week" },
-                { question: "We ______ (have) a party yesterday evening.", answer: "had", options: ["have", "has", "had", "having"], explanation: "不规则动词，标志词yesterday evening" }
-            ],
-            "一般将来时": [
-                { question: "I ______ (visit) my grandparents next Sunday.", answer: "will visit", options: ["visit", "visited", "will visit", "am visiting"], explanation: "标志词next Sunday" },
-                { question: "She ______ (not go) to the party tomorrow.", answer: "won't go", options: ["not go", "doesn't go", "won't go", "didn't go"], explanation: "否定式，标志词tomorrow" },
-                { question: "______ you ______ (see) the film this weekend?", answer: "Will; see", options: ["Do; see", "Did; see", "Will; see", "Are; seeing"], explanation: "一般疑问句，标志词this weekend" },
-                { question: "They ______ (have) a meeting at 3:00 p.m. tomorrow.", answer: "will have", options: ["have", "had", "will have", "are having"], explanation: "标志词tomorrow" },
-                { question: "The train ______ (arrive) in 10 minutes.", answer: "will arrive", options: ["arrive", "arrives", "arrived", "will arrive"], explanation: "标志词in 10 minutes" }
-            ],
-            "现在进行时": [
-                { question: "Look! They ______ (play) football on the playground.", answer: "are playing", options: ["play", "plays", "are playing", "played"], explanation: "标志词Look!，现在进行时结构：am/is/are + doing" },
-                { question: "I ______ (not study) now; I'm resting.", answer: "am not studying", options: ["not study", "don't study", "am not studying", "wasn't studying"], explanation: "标志词now" },
-                { question: "She ______ (cook) dinner in the kitchen at the moment.", answer: "is cooking", options: ["cook", "cooks", "is cooking", "cooked"], explanation: "标志词at the moment" },
-                { question: "______ you ______ (watch) TV now?", answer: "Are; watching", options: ["Do; watch", "Did; watch", "Are; watching", "Will; watch"], explanation: "一般疑问句，标志词now" },
-                { question: "It ______ (rain) outside. Take an umbrella.", answer: "is raining", options: ["rain", "rains", "is raining", "rained"], explanation: "语境提示：正在下雨" }
-            ],
-            "过去进行时": [
-                { question: "At 8:00 last night, I ______ (watch) TV.", answer: "was watching", options: ["watch", "watched", "was watching", "will watch"], explanation: "标志词At 8:00 last night，过去进行时结构：was/were + doing" },
-                { question: "She ______ (not study) when her mother came back.", answer: "wasn't studying", options: ["not study", "didn't study", "wasn't studying", "isn't studying"], explanation: "否定式，when引导的时间状语从句，主句用过去进行时" },
-                { question: "They ______ (play) football at this time yesterday.", answer: "were playing", options: ["play", "played", "were playing", "are playing"], explanation: "标志词at this time yesterday" },
-                { question: "______ he ______ (read) a book when you called him?", answer: "Was; reading", options: ["Do; read", "Did; read", "Was; reading", "Is; reading"], explanation: "一般疑问句，when引导的从句用一般过去时" },
-                { question: "We ______ (have) dinner when the phone rang.", answer: "were having", options: ["have", "had", "were having", "will have"], explanation: "when引导的从句用一般过去时，主句用过去进行时" }
-            ],
-            "现在完成时": [
-                { question: "I ______ (finish) my homework already.", answer: "have finished", options: ["finish", "finished", "have finished", "will finish"], explanation: "标志词already，现在完成时结构：have/has + done" },
-                { question: "She ______ (not see) that film yet.", answer: "hasn't seen", options: ["not see", "doesn't see", "hasn't seen", "didn't see"], explanation: "标志词yet，第三人称单数" },
-                { question: "They ______ (live) in Beijing for 5 years.", answer: "have lived", options: ["live", "lived", "have lived", "are living"], explanation: "标志词for 5 years，表持续" },
-                { question: "______ you ______ (visit) the Great Wall before?", answer: "Have; visited", options: ["Do; visit", "Did; visit", "Have; visited", "Will; visit"], explanation: "一般疑问句，标志词before" },
-                { question: "He ______ (study) English since 2018.", answer: "has studied", options: ["study", "studies", "has studied", "studied"], explanation: "标志词since 2018，第三人称单数" }
-            ],
-            "过去完成时": [
-                { question: "By the time I arrived, they ______ (leave) already.", answer: "had left", options: ["leave", "left", "had left", "will leave"], explanation: "标志词By the time，过去完成时结构：had + done，表“过去的过去”" },
-                { question: "She ______ (not finish) her homework before her mother came back.", answer: "hadn't finished", options: ["not finish", "didn't finish", "hadn't finished", "wasn't finishing"], explanation: "否定式，before引导的从句用一般过去时，主句用过去完成时" },
-                { question: "They ______ (live) in Beijing for 5 years before they moved to Shanghai.", answer: "had lived", options: ["live", "lived", "had lived", "have lived"], explanation: "标志词for 5 years + before从句，表过去持续到过去某个时间" },
-                { question: "______ he ______ (read) the book before he saw the film?", answer: "Had; read", options: ["Do; read", "Did; read", "Had; read", "Has; read"], explanation: "一般疑问句，before引导的从句用一般过去时" },
-                { question: "He ______ (study) English for 3 years before he went abroad.", answer: "had studied", options: ["study", "studied", "has studied", "had studied"], explanation: "标志词for 3 years + before从句，第三人称单数" }
-            ],
-            "将来完成时": [
-                { question: "By next year, I ______ (finish) my college studies.", answer: "will have finished", options: ["finish", "will finish", "will have finished", "have finished"], explanation: "标志词By next year，将来完成时结构：will have + done，表“将来某个时间前完成的动作”" },
-                { question: "She ______ (not write) the book by the end of this month.", answer: "won't have written", options: ["not write", "doesn't write", "won't have written", "hasn't written"], explanation: "否定式，标志词by the end of this month" },
-                { question: "They ______ (live) in Beijing for 10 years by 2025.", answer: "will have lived", options: ["live", "will live", "will have lived", "have lived"], explanation: "标志词for 10 years + by 2025，表持续到将来" },
-                { question: "______ he ______ (read) all the books by next week?", answer: "Will; have read", options: ["Do; read", "Will; read", "Will; have read", "Has; read"], explanation: "一般疑问句，标志词by next week" },
-                { question: "We ______ (have) 10 meetings by the end of this year.", answer: "will have had", options: ["have", "will have", "will have had", "had had"], explanation: "标志词by the end of this year" }
-            ]
-        };
+    <div id="quiz-container">
+        <!-- Javascript will populate this -->
+    </div>
+</div>
 
-        // DOM 元素
-        const categoryListElement = document.getElementById('category-list');
-        const initialPromptElement = document.getElementById('initial-prompt');
-        const questionCardElement = document.getElementById('question-card');
-        const currentCategoryElement = document.getElementById('current-category');
-        const currentQuestionCountElement = document.getElementById('current-question-count');
-        const questionTextElement = document.getElementById('question-text');
-        const optionsContainerElement = document.getElementById('options-container');
-        const nextBtnElement = document.getElementById('next-btn');
-        const explanationContainerElement = document.getElementById('explanation-container');
-        const explanationIconElement = document.getElementById('explanation-icon');
-        const explanationTitleElement = document.getElementById('explanation-title');
-        const correctAnswerElement = document.getElementById('correct-answer');
-        const explanationTextElement = document.getElementById('explanation-text');
-        const progressTextElement = document.getElementById('progress-text');
-        const progressBarElement = document.getElementById('progress-bar');
-        const accuracyTextElement = document.getElementById('accuracy-text');
+<script>
+    // --- Data Source ---
+    const quizData = {
+        single: [
+            { id: 1, q: "毛泽东思想被确立为党的指导思想并写入党章是在（ ）。", opts: ["A. 遵义会议", "B. 中共七大", "C. 中共七届二中全会", "D. 中共八大"], ans: "B", expl: "1945年召开的中共七大，将毛泽东思想写入党章，确立为党必须长期坚持的指导思想。" },
+            { id: 2, q: "毛泽东思想活的灵魂是（ ）。", opts: ["A. 土地革命、武装斗争、根据地建设", "B. 统一战线、武装斗争、党的建设", "C. 实事求是、群众路线、独立自主", "D. 理论联系实际、密切联系群众、批评与自我批评"], ans: "C", expl: "《关于建国以来党的若干历史问题的决议》指出，实事求是、群众路线、独立自主是毛泽东思想活的灵魂的三个基本方面。" },
+            { id: 3, q: "毛泽东提出“没有调查，没有发言权”的著名论断的著作是（ ）。", opts: ["A. 《反对本本主义》", "B. 《实践论》", "C. 《矛盾论》", "D. 《星星之火，可以燎原》"], ans: "A", expl: "1930年，毛泽东在《反对本本主义》中极力反对教条主义，提出了“没有调查，没有发言权”的著名论断。" },
+            { id: 4, q: "中国共产党内第一个明确使用“毛泽东思想”这一概念的是（ ）。", opts: ["A. 张闻天", "B. 王稼祥", "C. 朱德", "D. 刘少奇"], ans: "B", expl: "1943年，王稼祥在《中国共产党与中国民族解放的道路》一文中，首次明确提出了“毛泽东思想”这一概念。" },
+            { id: 5, q: "毛泽东思想走向成熟的主要标志是（ ）。", opts: ["A. 提出了新民主主义革命的基本思想", "B. 系统地阐述了农村包围城市、武装夺取政权的革命道路理论", "C. 形成了关于中国革命的系统的科学理论体系", "D. 提出了社会主义矛盾学说"], ans: "C", expl: "土地革命战争后期和抗日战争时期（1935-1945），毛泽东思想得到系统总结和多方面展开而达到成熟。其标志是形成了关于中国革命的系统的科学理论体系。" },
+            { id: 6, q: "中国新民主主义革命的首要对象是（ ）。", opts: ["A. 封建主义", "B. 官僚资本主义", "C. 民族资产阶级", "D. 帝国主义"], ans: "D", expl: "帝国主义是近代中国贫困落后和一切灾祸的总根源，是中国社会发展的主要障碍。因此，它是中国革命的首要对象。" },
+            { id: 7, q: "新民主主义革命区别于旧民主主义革命的根本标志是（ ）。", opts: ["A. 革命的动力不同", "B. 革命的对象不同", "C. 革命的领导权不同", "D. 革命的前途不同"], ans: "C", expl: "无产阶级领导权问题是新民主主义革命理论的核心问题。革命的领导权掌握在无产阶级手中还是资产阶级手中，是区分新旧民主主义革命的根本标志。" },
+            { id: 8, q: "新民主主义经济的领导力量是（ ）。", opts: ["A. 合作社经济", "B. 国营经济", "C. 私人资本主义经济", "D. 个体经济"], ans: "B", expl: "新民主主义经济纲领规定，国营经济是社会主义性质的，是国民经济的领导力量。" },
+            { id: 9, q: "毛泽东指出，人民军队的唯一宗旨是（ ）。", opts: ["A. 打仗消灭敌人", "B. 加强纪律性", "C. 全心全意为人民服务", "D. 执行党的政治任务"], ans: "C", expl: "毛泽东在《论联合政府》中明确指出：“紧紧地和中国人民站在一起，全心全意地为中国人民服务，就是这个军队的唯一的宗旨。”" },
+            { id: 10, q: "“工农武装割据”思想的中心内容是（ ）。", opts: ["A. 武装斗争", "B. 土地革命", "C. 根据地建设", "D. 党的领导"], ans: "B", expl: "“工农武装割据”是土地革命、武装斗争和根据地建设三者的紧密结合。其中，土地革命是民主革命的基本内容，也是“工农武装割据”的中心内容。" },
+            { id: 11, q: "我国对资本主义工商业的社会主义改造采取的政策是（ ）。", opts: ["A. 没收", "B. 和平赎买", "C. 互助合作", "D. 自愿联合"], ans: "B", expl: "中国共产党根据民族资本主义的两面性，创造性地开辟了一条对资本主义工商业实行和平赎买的道路，通过国家资本主义的形式，将资本主义私有制逐步改造为社会主义公有制。" },
+            { id: 12, q: "党在过渡时期总路线的主体是（ ）。", opts: ["A. 对农业的社会主义改造", "B. 对手工业的社会主义改造", "C. 对资本主义工商业的社会主义改造", "D. 实现国家的社会主义工业化"], ans: "D", expl: "党在过渡时期的总路线是“一化三改”、“一体两翼”的总路线。“一化”即逐步实现国家的社会主义工业化，这是主体。" },
+            { id: 13, q: "我国进入社会主义初级阶段的标志是（ ）。", opts: ["A. 中华人民共和国成立", "B. 国民经济恢复任务完成", "C. 社会主义改造基本完成", "D. 中共八大的召开"], ans: "C", expl: "1956年底，我国对农业、手工业和资本主义工商业的社会主义改造基本完成，标志着社会主义基本制度在我国初步确立，我国进入了社会主义初级阶段。" },
+            { id: 14, q: "我国对农业进行社会主义改造的道路是（ ）。", opts: ["A. 土地国有", "B. 合作化", "C. 机械化", "D. 集体农庄"], ans: "B", expl: "我国对农业的社会主义改造遵循自愿互利、典型示范和国家帮助的原则，采取了从互助组到初级社再到高级社的由低级到高级的合作社发展道路。" },
+            { id: 15, q: "毛泽东在《论十大关系》中论述的第一大关系是（ ）。", opts: ["A. 重工业和轻工业、农业的关系", "B. 沿海工业和内地工业的关系", "C. 经济建设和国防建设的关系", "D. 国家、生产单位和生产者个人的关系"], ans: "A", expl: "《论十大关系》的前五条主要讨论经济问题，其中第一条就是重工业和轻工业、农业的关系，强调要适当调整投资比例，更多地发展农业和轻工业。" },
+            { id: 16, q: "毛泽东提出社会主义社会基本矛盾学说的著作是（ ）。", opts: ["A. 《论十大关系》", "B. 《关于正确处理人民内部矛盾的问题》", "C. 《论人民民主专政》", "D. 《在中国共产党全国代表大会上的讲话》"], ans: "B", expl: "1957年，毛泽东在《关于正确处理人民内部矛盾的问题》一文中，系统地阐述了社会主义社会基本矛盾的理论。" },
+            { id: 17, q: "在社会主义社会，国家政治生活的主题是（ ）。", opts: ["A. 正确处理人民内部矛盾", "B. 坚持无产阶级专政下的继续革命", "C. 开展阶级斗争", "D. 解决社会主义和资本主义两条道路的矛盾"], ans: "A", expl: "毛泽东指出，在社会主义制度下，人民的根本利益是一致的，但还存在着各种矛盾。这些矛盾在政治上划分为敌我矛盾和人民内部矛盾两类，并把正确处理人民内部矛盾作为国家政治生活的主题。" },
+            { id: 18, q: "邓小平理论首要的基本的理论问题是（ ）。", opts: ["A. 什么是社会主义，怎样建设社会主义", "B. 建设一个什么样的党，怎样建设党", "C. 实现什么样的发展，怎样发展", "D. 什么是改革开放，怎样推进改革开放"], ans: "A", expl: "“什么是社会主义、怎样建设社会主义”是邓小平在领导改革开放和现代化建设过程中，不断提出和反复思考的首要的基本的理论问题。" },
+            { id: 19, q: "邓小平理论的精髓是（ ）。", opts: ["A. 解放思想，实事求是", "B. 一个中心，两个基本点", "C. 三个有利于", "D. 发展才是硬道理"], ans: "A", expl: "解放思想，实事求是是我们党的思想路线，也是邓小平理论的精髓。" },
+            { id: 20, q: "社会主义的根本任务是（ ）。", opts: ["A. 改革开放", "B. 坚持党的领导", "C. 发展生产力", "D. 实现共同富裕"], ans: "C", expl: "邓小平强调，社会主义的本质是解放生产力，发展生产力，消灭剥削，消除两极分化，最终达到共同富裕。因此，发展生产力是社会主义的根本任务。" },
+            { id: 21, q: "我国社会主义改革开放和现代化建设的总设计师是（ ）。", opts: ["A. 毛泽东", "B. 邓小平", "C. 江泽民", "D. 胡锦涛"], ans: "B", expl: "邓小平作为中国共产党的第二代中央领导集体的核心，引导中国走上了改革开放之路，被誉为中国社会主义改革开放和现代化建设的总设计师。" },
+            { id: 22, q: "“三个有利于”标准是（ ）。", opts: ["A. 判断姓“社”姓“资”的标准", "B. 判断改革开放成败得失的标准", "C. 真理性的标准", "D. 价值性的标准"], ans: "B", expl: "邓小平在1992年南方谈话中提出了“三个有利于”标准，即判断改革开放和一切工作得失成败的标准，主要看是否有利于发展社会主义社会的生产力，是否有利于增强社会主义国家的综合国力，是否有利于提高人民的生活水平。" },
+            { id: 23, q: "贯彻“三个代表”重要思想，关键在（ ）。", opts: ["A. 坚持与时俱进", "B. 坚持党的先进性", "C. 坚持执政为民", "D. 坚持实事求是"], ans: "A", expl: "贯彻“三个代表”重要思想，关键在坚持与时俱进，核心在坚持党的先进性，本质在坚持执政为民。" },
+            { id: 24, q: "“三个代表”重要思想创造性回答的重大问题是（ ）。", opts: ["A. 什么是社会主义，怎样建设社会主义", "B. 建设一个什么样的党，怎样建设党", "C. 实现什么样的发展，怎样发展", "D. 什么是马克思主义，怎样坚持马克思主义"], ans: "B", expl: "“三个代表”重要思想在邓小平理论的基础上，进一步回答了什么是社会主义、怎样建设社会主义的问题，创造性地回答了建设什么样的党、怎样建设党的问题。" },
+            { id: 25, q: "科学发展观的核心是（ ）。", opts: ["A. 发展", "B. 以人为本", "C. 全面协调可持续", "D. 统筹兼顾"], ans: "B", expl: "科学发展观，第一要义是发展，核心立场是以人为本，基本要求是全面协调可持续，根本方法是统筹兼顾。" },
+            { id: 26, q: "科学发展观强调，解决中国一切问题的“总钥匙”是（ ）。", opts: ["A. 改革", "B. 发展", "C. 稳定", "D. 创新"], ans: "B", expl: "科学发展观指出，发展是解决中国所有问题的关键，是党执政兴国的第一要务。" },
+            { id: 27, q: "科学发展观提出的现实基础是（ ）。", opts: ["A. 我国社会主义建设的实践经验", "B. 我国现阶段的基本国情和阶段性特征", "C. 当今世界的发展趋势和发展理论", "D. 马克思列宁主义关于发展的思想"], ans: "B", expl: "科学发展观是在深刻分析和把握我国发展的阶段性特征，适应新的发展要求的基础上提出来的。" },
+            { id: 28, q: "中国特色社会主义进入新时代，我国社会主要矛盾已经转化为（ ）。", opts: ["A. 人民日益增长的物质文化需要同落后的社会生产之间的矛盾", "B. 人民日益增长的美好生活需要和不平衡不充分的发展之间的矛盾", "C. 生产力和生产关系、经济基础和上层建筑之间的矛盾", "D. 无产阶级和资产阶级之间的矛盾"], ans: "B", expl: "党的十九大明确提出，中国特色社会主义进入新时代，我国社会主要矛盾已经转化为人民日益增长的美好生活需要和不平衡不充分的发展之间的矛盾。" },
+            { id: 29, q: "习近平新时代中国特色社会主义思想的核心要义是（ ）。", opts: ["A. 坚持和发展中国特色社会主义", "B. 实现中华民族伟大复兴", "C. 坚持以人民为中心", "D. 构建人类命运共同体"], ans: "A", expl: "坚持和发展中国特色社会主义，是改革开放以来我们党全部理论和实践的主题，也是习近平新时代中国特色社会主义思想的核心要义。" },
+            { id: 30, q: "新时代中国特色社会主义事业总体布局是（ ）。", opts: ["A. “四个全面”", "B. “五位一体”", "C. “四个自信”", "D. “十四个坚持”"], ans: "B", expl: "“五位一体”总体布局是指经济建设、政治建设、文化建设、社会建设、生态文明建设五位一体，全面推进。这是新时代中国特色社会主义事业的总体布局。" },
+            { id: 31, q: "新时代坚持和发展中国特色社会主义的总任务是（ ）。", opts: ["A. 实现共同富裕", "B. 实现社会主义现代化和中华民族伟大复兴", "C. 全面建成小康社会", "D. 构建人类命运共同体"], ans: "B", expl: "党的十九大报告指出，坚持和发展中国特色社会主义，总任务是实现社会主义现代化和中华民族伟大复兴。" },
+            { id: 32, q: "从2020年到2035年，我们的目标是（ ）。", opts: ["A. 全面建成小康社会", "B. 基本实现社会主义现代化", "C. 建成社会主义现代化强国", "D. 实现共产主义"], ans: "B", expl: "党的十九大对实现第二个百年奋斗目标作出分两个阶段推进的战略安排。第一个阶段，从2020年到2035年，在全面建成小康社会的基础上，再奋斗十五年，基本实现社会主义现代化。" },
+            { id: 33, q: "贯彻新发展理念，建设现代化经济体系，必须坚持的主线是（ ）。", opts: ["A. 供给侧结构性改革", "B. 转变经济发展方式", "C. 优化经济结构", "D. 转换增长动力"], ans: "A", expl: "建设现代化经济体系是跨越关口的迫切要求和我国发展的战略目标。必须以供给侧结构性改革为主线，推动经济发展质量变革、效率变革、动力变革。" },
+            { id: 34, q: "我国的根本政治制度是（ ）。", opts: ["A. 人民代表大会制度", "B. 中国共产党领导的多党合作和政治协商制度", "C. 民族区域自治制度", "D. 基层群众自治制度"], ans: "A", expl: "人民代表大会制度是坚持党的领导、人民当家作主、依法治国有机统一的根本政治制度安排，是我国的根本政治制度。" },
+            { id: 35, q: "社会主义民主政治的本质和核心是（ ）。", opts: ["A. 中国共产党的领导", "B. 人民当家作主", "C. 依法治国", "D. 政治协商"], ans: "B", expl: "人民当家作主是社会主义民主政治的本质和核心。" },
+            { id: 36, q: "意识形态工作的领导权、管理权、话语权，必须牢牢掌握在（ ）手中。", opts: ["A. 知识分子", "B. 人民群众", "C. 中国共产党", "D. 宣传部门"], ans: "C", expl: "意识形态关乎旗帜、关乎道路、关乎国家政治安全。必须坚持党对意识形态工作的领导权，巩固马克思主义在意识形态领域的指导地位。" },
+            { id: 37, q: "最大的民生是（ ）。", opts: ["A. 教育", "B. 医疗", "C. 就业", "D. 社保"], ans: "C", expl: "就业是最大的民生工程、民心工程、根基工程。要把稳就业摆在突出位置。" },
+            { id: 38, q: "生态文明建设的核心是（ ）。", opts: ["A. 节约资源", "B. 保护环境", "C. 坚持人与自然和谐共生", "D. 可持续发展"], ans: "C", expl: "生态文明建设是关系中华民族永续发展的根本大计。必须坚持节约优先、保护优先、自然恢复为主的方针，形成节约资源和保护环境的空间格局、产业结构、生产方式、生活方式，其核心是坚持人与自然和谐共生。" },
+            { id: 39, q: "全面建设社会主义现代化国家的首要任务是（ ）。", opts: ["A. 全面深化改革", "B. 高质量发展", "C. 全体人民共同富裕", "D. 加快科技创新"], ans: "B", expl: "中国共产党第二十次全国代表大会明确指出，高质量发展是全面建设社会主义现代化国家的首要任务。" },
+            { id: 40, q: "全面深化改革的总目标是（ ）。", opts: ["A. 完善和发展中国特色社会主义制度，推进国家治理体系和治理能力现代化", "B. 建设社会主义现代化强国", "C. 实现共同富裕", "D. 实现中华民族伟大复兴"], ans: "A", expl: "党的十八届三中全会提出，全面深化改革的总目标是完善和发展中国特色社会主义制度，推进国家治理体系和治理能力现代化。" },
+            { id: 41, q: "全面推进依法治国的总目标是（ ）。", opts: ["A. 建设中国特色社会主义法治体系，建设社会主义法治国家", "B. 科学立法、严格执法、公正司法、全民守法", "C. 有法可依、有法必依、执法必严、违法必究", "D. 实现国家治理体系和治理能力现代化"], ans: "A", expl: "党的十八届四中全会提出，全面推进依法治国的总目标是建设中国特色社会主义法治体系，建设社会主义法治国家。" },
+            { id: 42, q: "全面从严治党，必须以（ ）为统领。", opts: ["A. 思想建设", "B. 组织建设", "C. 政治建设", "D. 作风建设"], ans: "C", expl: "党的政治建设是党的根本性建设，决定党的建设方向和效果。必须把党的政治建设摆在首位，以党的政治建设为统领。" },
+            { id: 43, q: "总体国家安全观的宗旨是（ ）。", opts: ["A. 政治安全", "B. 人民安全", "C. 经济安全", "D. 军事安全"], ans: "B", expl: "总体国家安全观以人民安全为宗旨，以政治安全为根本，以经济安全为基础，以军事、文化、社会安全为保障，以促进国际安全为依托。" },
+            { id: 44, q: "强军目标的核心是（ ）。", opts: ["A. 听党指挥", "B. 能打胜仗", "C. 作风优良", "D. 纪律严明"], ans: "B", expl: "建设一支听党指挥、能打胜仗、作风优良的人民军队，是党在新时代的强军目标。其中，听党指挥是灵魂，能打胜仗是核心，作风优良是保证。" },
+            { id: 45, q: "坚持“一国两制”的根本是（ ）。", opts: ["A. 坚持中央全面管治权和保障特别行政区高度自治权相结合", "B. 坚持“港人治港”、“澳人治澳”", "C. 坚持依法治港治澳", "D. 坚持维护国家主权、安全、发展利益"], ans: "D", expl: "“一国两制”的根本是坚持一个中国原则，维护国家主权、安全、发展利益。这是不可触碰的底线。" },
+            { id: 46, q: "中国外交政策的宗旨是（ ）。", opts: ["A. 维护世界和平、促进共同发展", "B. 和平共处五项原则", "C. 构建人类命运共同体", "D. 独立自主"], ans: "A", expl: "中国坚定不移奉行独立自主的和平外交政策，宗旨是维护世界和平、促进共同发展。" },
+            { id: 47, q: "推动建立新型国际关系，其“新”在于（ ）。", opts: ["A. 合作共赢", "B. 和平共处", "C. 相互尊重", "D. 公平正义"], ans: "A", expl: "新型国际关系，“新”在相互尊重，“新”在公平正义，特别是“新”在合作共赢。核心是合作共赢。" },
+            { id: 48, q: "“一带一路”建设的核心理念是（ ）。", opts: ["A. 和平合作、开放包容、互学互鉴、互利共赢", "B. 共商、共建、共享", "C. 政策沟通、设施联通、贸易畅通、资金融通、民心相通", "D. 开放、绿色、廉洁"], ans: "B", expl: "“共商、共建、共享”是推进“一带一路”建设的核心理念。" },
+            { id: 49, q: "中国特色社会主义最本质的特征是（ ）。", opts: ["A. 人民当家作主", "B. 依法治国", "C. 中国共产党领导", "D. 实行社会主义市场经济"], ans: "C", expl: "党的十九大报告指出：“中国特色社会主义最本质的特征是中国共产党领导，中国特色社会主义制度的最大优势是中国共产党领导。”" },
+            { id: 50, q: "新时代党的建设的根本方针是（ ）。", opts: ["A. 坚持和加强党的全面领导", "B. 坚持党要管党、全面从严治党", "C. 加强党的长期执政能力建设、先进性和纯洁性建设", "D. 以党的政治建设为统领"], ans: "B", expl: "新时代党的建设的根本方针是“坚持党要管党、全面从严治党”。全面从严治党是“四个全面”战略布局的重要组成部分。" }
+        ],
+        multi: [
+            { id: 1, q: "毛泽东思想活的灵魂是（ ）。", opts: ["A. 实事求是", "B. 武装斗争", "C. 群众路线", "D. 独立自主"], ans: ["A", "C", "D"], expl: "毛泽东思想活的灵魂有三个基本方面，即实事求是，群众路线，独立自主。" },
+            { id: 2, q: "新民主主义革命的三大法宝是（ ）。", opts: ["A. 实事求是", "B. 统一战线", "C. 武装斗争", "D. 党的建设"], ans: ["B", "C", "D"], expl: "毛泽东在《〈共产党人〉发刊词》中系统地论述了统一战线、武装斗争、党的建设三者的关系，指出这是中国共产党在中国革命中战胜敌人的三个主要的法宝。" },
+            { id: 3, q: "我国对个体农业进行社会主义改造遵循的原则是（ ）。", opts: ["A. 自愿互利", "B. 典型示范", "C. 国家帮助", "D. 积极领导"], ans: ["A", "B", "C"], expl: "我国对农业的社会主义改造，遵循自愿互利、典型示范和国家帮助的原则，创造了从互助组到初级社再到高级社的过渡形式。" },
+            { id: 4, q: "邓小平在1992年南方谈话中提出了（ ）。", opts: ["A. 社会主义本质理论", "B. “三个有利于”标准", "C. 社会主义市场经济理论", "D. “发展才是硬道理”"], ans: ["A", "B", "C", "D"], expl: "1992年邓小平南方谈话，在重大理论和实践问题上解放了人们的思想，提出了包括以上全部选项在内的一系列著名论断。" },
+            { id: 5, q: "“三个代表”重要思想的集中概括是，中国共产党必须始终（ ）。", opts: ["A. 代表中国先进生产力的发展要求", "B. 代表中国先进文化的前进方向", "C. 代表中国最广大人民的根本利益", "D. 代表中国社会发展的历史潮流"], ans: ["A", "B", "C"], expl: "“三个代表”重要思想的集中概括就是：中国共产党必须始终代表中国先进生产力的发展要求，代表中国先进文化的前进方向，代表中国最广大人民的根本利益。" },
+            { id: 6, q: "科学发展观的基本要求是（ ）。", opts: ["A. 推动经济社会发展", "B. 以人为本", "C. 全面协调可持续", "D. 统筹兼顾"], ans: ["C"], expl: "科学发展观，第一要义是发展，核心立场是以人为本，基本要求是全面协调可持续，根本方法是统筹兼顾。本题问的是“基本要求”。" },
+            { id: 7, q: "下列选项中，属于中国式现代化特征的是（ ）。", opts: ["A. 人口规模巨大的现代化", "B. 全体人民共同富裕的现代化", "C. 物质文明和精神文明相协调的现代化", "D. 人与自然和谐共生的现代化"], ans: ["A", "B", "C", "D"], expl: "中国式现代化是中国共产党领导的社会主义现代化，它具有人口规模巨大、全体人民共同富裕、物质文明和精神文明相协调、人与自然和谐共生、走和平发展道路的鲜明特色。以上四个选项均是其重要特征。" },
+            { id: 8, q: "“四个全面”战略布局包括（ ）。", opts: ["A. 全面建设社会主义现代化国家", "B. 全面深化改革", "C. 全面依法治国", "D. 全面从严治党"], ans: ["A", "B", "C", "D"], expl: "随着全面建成小康社会目标的达成，“四个全面”战略布局的内涵演变为全面建设社会主义现代化国家、全面深化改革、全面依法治国、全面从严治党。" },
+            { id: 9, q: "“四个自信”是指（ ）。", opts: ["A. 道路自信", "B. 理论自信", "C. 制度自信", "D. 文化自信"], ans: ["A", "B", "C", "D"], expl: "“四个自信”即中国特色社会主义道路自信、理论自信、制度自信、文化自信。这是党和国家事业发展的精神动力。" },
+            { id: 10, q: "新发展理念包括（ ）。", opts: ["A. 创新", "B. 协调", "C. 绿色", "D. 开放", "E. 共享"], ans: ["A", "B", "C", "D", "E"], expl: "新发展理念是一个系统的理论体系，回答了关于发展的目的、动力、方式、路径等一系列理论和实践问题，阐明了我们党关于发展的政治立场、价值导向、发展模式、发展道路等重大政治问题。其内涵是创新、协调、绿色、开放、共享。" },
+            { id: 11, q: "社会主义核心价值观在社会层面的价值要求是（ ）。", opts: ["A. 富强、民主、文明、和谐", "B. 自由、平等、公正、法治", "C. 爱国、敬业、诚信、友善", "D. 自尊、自信、理性、平和"], ans: ["B"], expl: "富强、民主、文明、和谐是国家层面的价值目标，自由、平等、公正、法治是社会层面的价值取向，爱国、敬业、诚信、友善是公民个人层面的价值准则。" },
+            { id: 12, q: "保障和改善民生，需要（ ）。", opts: ["A. 建设高质量教育体系", "B. 强化就业优先政策", "C. 优化收入分配结构", "D. 健全多层次社会保障体系"], ans: ["A", "B", "C", "D"], expl: "民生是人民幸福之基、社会和谐之本。在发展中保障和改善民生，必须抓住人民最关心最直接最现实的利益问题，以上选项均为重要举措。" },
+            { id: 13, q: "构建人与自然生命共同体，我们应该（ ）。", opts: ["A. 坚持人与自然和谐共生", "B. 坚持绿色发展", "C. 坚持系统治理", "D. 坚持以人为本"], ans: ["A", "B", "C"], expl: "构建人与自然生命共同体，要坚持人与自然和谐共生，坚持绿色发展，坚持系统治理，坚持共同但有区别的责任原则等。选项D“以人为本”是科学发展观的核心，与题意直接关联度不高。" },
+            { id: 14, q: "全面深化改革必须坚持（ ）。", opts: ["A. 党对改革的集中统一领导", "B. 改革沿着中国特色社会主义方向前进", "C. 改革往有利于维护社会公平正义、增进人民福祉方向前进", "D. 社会主义市场经济改革方向"], ans: ["A", "B", "C", "D"], expl: "全面深化改革必须坚持正确的方向。必须坚持党对改革的集中统一领导，坚持改革沿着中国特色社会主义方向前进，坚持改革往有利于维护社会公平正义、增进人民福祉方向前进，坚持社会主义市场经济改革方向。" },
+            { id: 15, q: "构建人类命运共同体，其核心内涵是（ ）。", opts: ["A. 建设一个持久和平、普遍安全的世界", "B. 建设一个共同繁荣、开放包容的世界", "C. 建设一个清洁美丽、绿色低碳的世界", "D. 建设一个文化单一、标准统一的世界"], ans: ["A", "B", "C"], expl: "构建人类命运共同体，就是要建设持久和平、普遍安全、共同繁荣、开放包容、清洁美丽的世界。它尊重世界文明多样性，而不是追求文化单一。" },
+            { id: 16, q: "新时代巩固和发展爱国统一战线，需要（ ）。", opts: ["A. 坚持一致性和多样性统一", "B. 深化民族团结进步教育", "C. 坚持我国宗教中国化方向", "D. 充分发挥政协委员的作用"], ans: ["A", "B", "C", "D"], expl: "统一战线是党的事业取得胜利的重要法宝。新时代巩固和发展最广泛的爱国统一战线，需要做好以上所有方面的工作。" },
+            { id: 17, q: "坚持党对一切工作的领导，必须（ ）。", opts: ["A. 自觉维护党中央权威和集中统一领导", "B. 确保党始终总揽全局、协调各方", "C. 全面增强党的执政本领", "D. 将党的领导落实到国家治理各领域各方面各环节"], ans: ["A", "B", "C", "D"], expl: "中国共产党领导是中国特色社会主义最本质的特征和最大优势。坚持党对一切工作的领导，必须体现在以上所有方面。" },
+            { id: 18, q: "党的政治建设的首要任务是（ ）。", opts: ["A. 保证全党服从中央", "B. 坚持党中央权威和集中统一领导", "C. 坚定理想信念", "D. 严肃党内政治生活"], ans: ["A", "B"], expl: "党的政治建设的首要任务是保证全党服从中央，坚持党中央权威和集中统一领导。这是党的政治建设的重大原则。" },
+            { id: 19, q: "毛泽东思想的科学内涵是（ ）。", opts: ["A. 马克思列宁主义在中国的运用和发展", "B. 关于新民主主义革命的理论", "C. 被实践证明了的关于中国革命和建设的正确的理论原则和经验总结", "D. 中国共产党集体智慧的结晶"], ans: ["A", "C", "D"], expl: "毛泽东思想是马克思列宁主义在中国的运用和发展，是被实践证明了的关于中国革命和建设的正确的理论原则和经验总结，是中国共产党集体智慧的结晶。选项B是毛泽东思想的主要内容之一，而非其科学内涵的定义。" },
+            { id: 20, q: "社会主义初级阶段的基本经济制度是（ ）。", opts: ["A. 公有制为主体、多种所有制经济共同发展", "B. 按劳分配为主体、多种分配方式并存", "C. 社会主义市场经济体制", "D. 计划经济为主，市场调节为辅"], ans: ["A", "B", "C"], expl: "我国社会主义初级阶段的基本经济制度包括：公有制为主体、多种所有制经济共同发展，按劳分配为主体、多种分配方式并存，社会主义市场经济体制。这是党的十九大报告作出的新概括。" }
+        ],
+        judge: [
+            { id: 1, q: "毛泽东思想就是毛泽东个人的思想。", ans: "错误", expl: "毛泽东思想不仅是毛泽东同志个人的思想，更是中国共产党集体智慧的结晶。党的许多卓越领导人对它的形成和发展都作出了重要贡献。同时，毛泽东个人的正确思想是毛泽东思想的主要组成部分，但他晚年的错误思想不属于毛泽东思想的科学体系。" },
+            { id: 2, q: "社会主义初级阶段是指任何国家进入社会主义都会经历的起始阶段。", ans: "错误", expl: "社会主义初级阶段不是泛指任何国家进入社会主义都会经历的起始阶段，而是特指我国在生产力落后、商品经济不发达条件下建设社会主义必然要经历的特定阶段。这个论断明确指出了中国社会主义社会的特殊性。" },
+            { id: 3, q: "改革开放是决定当代中国命运的关键一招。", ans: "正确", expl: "改革开放是党在新的时代条件下带领人民进行的新的伟大革命，是决定当代中国命运的关键抉择，是发展中国特色社会主义、实现中华民族伟大复兴的必由之路。实践证明，改革开放极大地解放和发展了社会生产力，增强了社会活力，改善了人民生活，使中国大踏步赶上了时代。" },
+            { id: 4, q: "新时代我国社会主要矛盾已经转变，意味着我国的基本国情发生了变化。", ans: "错误", expl: "新时代我国社会主要矛盾转化为人民日益增长的美好生活需要和不平衡不充分的发展之间的矛盾。但必须认识到，我国社会主要矛盾的变化没有改变我们对我国社会主义所处历史阶段的判断，我国仍处于并将长期处于社会主义初级阶段的基本国情没有变，我国是世界最大发展中国家的国际地位没有变。" },
+            { id: 5, q: "市场在资源配置中起决定性作用，意味着可以忽视政府的作用。", ans: "错误", expl: "经济发展中，既要发挥市场在资源配置中的决定性作用，也要更好发挥政府作用。政府的职责和作用主要是保持宏观经济稳定，加强和优化公共服务，保障公平竞争，加强市场监管，维护市场秩序，推动可持续发展，促进共同富裕，弥补市场失灵。" },
+            { id: 6, q: "全面依法治国是国家治理的一场深刻革命。", ans: "正确", expl: "全面依法治国是中国特色社会主义的本质要求和重要保障。它关系到党执政兴国，关系到人民幸福安康，关系到党和国家长治久安。必须坚持厉行法治，推进科学立法、严格执法、公正司法、全民守法，这必然涉及体制、机制、观念的深刻变革，因此是一场深刻的革命。" },
+            { id: 7, q: "“一国两制”的构想最初是针对香港问题提出的。", ans: "错误", expl: "“一国两制”的构想最初是为解决台湾问题而提出的，但首先被运用于解决香港、澳门问题，并取得了举世公认的成功。" },
+            { id: 8, q: "文化自信是更基础、更广泛、更深厚的自信。", ans: "正确", expl: "习近平总书记指出，文化自信是更基础、更广泛、更深厚的自信。它是一个国家、一个民族发展中更基本、更深沉、更持久的力量。坚定中国特色社会主义道路自信、理论自信、制度自信，说到底是要坚定文化自信。" },
+            { id: 9, q: "全面从严治党，核心是加强党的领导。", ans: "正确", expl: "全面从严治党，基础在全面，关键在严，要害在治。其核心是加强党的领导，坚持党中央的集中统一领导，保证党和国家事业发展的正确方向。" },
+            { id: 10, q: "构建人类命运共同体意味着要放弃国家利益。", ans: "错误", expl: "构建人类命运共同体倡导合作共赢，主张各国在追求自身利益时兼顾他国合理关切，在谋求自身发展中促进各国共同发展。它并不要求放弃国家利益，而是主张建立更加平等均衡的新型全球发展伙伴关系，实现共赢共享。" }
+        ],
+        short: [
+            { id: 1, q: "简述毛泽东思想的历史地位。", ans: "（1）毛泽东思想是马克思主义中国化的第一个重大理论成果。\n（2）是中国革命和建设的科学指南。\n（3）是中国共产党和中国人民宝贵的精神财富。" },
+            { id: 2, q: "简述新民主主义革命的总路线。", ans: "1948年，毛泽东在《在晋绥干部会议上的讲话》中完整地表述了总路线的内容，即无产阶级领导的，人民大众的，反对帝国主义、封建主义和官僚资本主义的革命。" },
+            { id: 3, q: "简述党在过渡时期的总路线。", ans: "从中华人民共和国成立，到社会主义改造基本完成，这是一个过渡时期。党在这个过渡时期的总路线和总任务，是要在一个相当长的时期内，逐步实现国家的社会主义工业化，并逐步实现国家对农业、对手工业和对资本主义工商业的社会主义改造。" },
+            { id: 4, q: "简述邓小平关于社会主义本质的论断。", ans: "社会主义的本质，是解放生产力，发展生产力，消灭剥削，消除两极分化，最终达到共同富裕。" },
+            { id: 5, q: "简述“三个代表”重要思想的主要内容。", ans: "中国共产党必须始终代表中国先进生产力的发展要求，代表中国先进文化的前进方向，代表中国最广大人民的根本利益。" },
+            { id: 6, q: "简述科学发展观的科学内涵。", ans: "（1）第一要义是发展。\n（2）核心立场是以人为本。\n（3）基本要求是全面协调可持续。\n（4）根本方法是统筹兼顾。" },
+            { id: 7, q: "简述新时代我国社会主要矛盾。", ans: "中国特色社会主义进入新时代，我国社会主要矛盾已经转化为人民日益增长的美好生活需要和不平衡不充分的发展之间的矛盾。" },
+            { id: 8, q: "简述“十四五”时期经济社会发展主题。", ans: "推动高质量发展是“十四五”时期经济社会发展的主题。这是根据我国发展阶段、发展环境、发展条件变化作出的科学判断。" },
+            { id: 9, q: "简述中国式现代化的中国特色。", ans: "中国式现代化是人口规模巨大的现代化，是全体人民共同富裕的现代化，是物质文明和精神文明相协调的现代化，是人与自然和谐共生的现代化，是走和平发展道路的现代化。" },
+            { id: 10, q: "简述“两步走”战略安排。", ans: "第一个阶段，从2020年到2035年，在全面建成小康社会的基础上，再奋斗15年，基本实现社会主义现代化。\n第二个阶段，从2035年到本世纪中叶，在基本实现现代化的基础上，再奋斗15年，把我国建成富强民主文明和谐美丽的社会主义现代化强国。" },
+            { id: 11, q: "试论述毛泽东思想的主要内容。", ans: "（1）关于新民主主义革命的理论。\n（2）关于社会主义革命和社会主义建设的理论。\n（3）关于革命军队的建设和军事战略的理论。\n（4）关于政策和策略的理论。\n（5）关于思想政治工作和文化工作的理论。\n（6）关于党的建设的理论。\n（7）毛泽东思想的活的灵魂（实事求是，群众路线，独立自主）。" },
+            { id: 12, q: "结合材料，论述为什么说中国特色社会主义进入了新时代。", ans: "（1）历史性成就与变革： 党的十八大以来，我国在经济建设、全面深化改革、民主法治建设、思想文化建设、人民生活改善、生态文明建设、强军兴军、港澳台工作、外交布局、全面从严治党等方面取得了历史性成就，发生了历史性变革。\n（2）社会主要矛盾的转化： 我国社会主要矛盾已经转化为人民日益增长的美好生活需要和不平衡不充分的发展之间的矛盾。这是中国特色社会主义进入新时代的重要标志和依据。\n（3）新的历史方位： 这个新时代，是承前启后、继往开来、在新的历史条件下继续夺取中国特色社会主义伟大胜利的时代。它在我国发展史上具有重大意义，在人类社会发展史上也具有重大意义。\n（4）新的奋斗目标： 新时代意味着近代以来久经磨难的中华民族迎来了从站起来、富起来到强起来的伟大飞跃，迎来了实现中华民族伟大复兴的光明前景。" },
+            { id: 13, q: "试论述如何推动经济高质量发展。", ans: "（1）坚持创新驱动战略：把科技自立自强作为国家发展的战略支撑，强化国家战略科技力量，提升企业技术创新能力，激发人才创新活力。\n（2）建设现代化经济体系：深化供给侧结构性改革，推动经济发展质量变革、效率变革、动力变革。加快发展先进制造业，推动互联网、大数据、人工智能同实体经济深度融合。\n（3）构建新发展格局：坚持扩大内需这个战略基点，加快构建以国内大循环为主体、国内国际双循环相互促进的新发展格局。\n（4）全面深化改革：坚持和完善社会主义基本经济制度，使市场在资源配置中起决定性作用，更好发挥政府作用，破除制约高质量发展的体制机制障碍。\n（5）推进乡村振兴与区域协调发展：坚持农业农村优先发展，缩小城乡差距；深入实施区域重大战略，形成优势互补、高质量发展的区域经济布局。" },
+            { id: 14, q: "论述坚持和加强党的全面领导的极端重要性。", ans: "（1）历史的选择、人民的选择：中国共产党领导是历史的选择、人民的选择。没有中国共产党领导，民族独立、人民解放和国家富强、人民幸福是不可能实现的。\n（2）最本质特征和最大优势：中国特色社会主义最本质的特征是中国共产党领导，中国特色社会主义制度的最大优势是中国共产党领导。党政军民学，东西南北中，党是领导一切的。\n（3）实现伟大复兴的根本保证：进行伟大斗争、建设伟大工程、推进伟大事业、实现伟大梦想，其中起决定性作用的是党的建设新的伟大工程。只有坚持和加强党的全面领导，才能凝聚起实现中华民族伟大复兴的磅礴力量。\n（4）应对风险挑战的定海神针：在当今世界百年未有之大变局和中华民族伟大复兴的战略全局背景下，我们面临的风险挑战严峻复杂。只有坚持党的集中统一领导，才能成功应对重大挑战、抵御重大风险、克服重大阻力、解决重大矛盾。" },
+            { id: 15, q: "结合材料，论述构建人类命运共同体的重大意义。", ans: "（1）回应了时代之问：面对世界百年未有之大变局，人类站在了新的十字路口。构建人类命运共同体理念，为人类社会发展进步指明了方向，贡献了中国智慧和中国方案。\n（2）超越了传统国际关系理论：它超越了零和博弈、强权政治等旧思维，主张各国共同掌握人类前途命运，走对话而不对抗、结伴而不结盟的国与国交往新路。\n（3）顺应了历史潮流：经济全球化是不可逆转的历史大势，和平、发展、合作、共赢是时代潮流。构建人类命运共同体理念顺应了这一历史大势和时代潮流。\n（4）提供了实践路径：通过推动共建“一带一路”高质量发展、积极参与全球治理体系改革和建设、倡导全人类共同价值等，为构建人类命运共同体提供了实实在在的实践平台和路径。" },
+            { id: 16, q: "试论述全面深化改革的方向、立场和原则。", ans: "（1）坚持和完善中国特色社会主义制度：全面深化改革的总目标是完善和发展中国特色社会主义制度，推进国家治理体系和治理能力现代化。必须牢牢坚持这个方向。\n（2）坚持党的领导：坚持党对全面深化改革的集中统一领导。这是改革取得成功的根本保证。\n（3）坚持以人民为中心：改革必须为了人民、依靠人民，改革的成果要由人民共享。这是全面深化改革的根本立场。\n（4）坚持社会主义市场经济改革方向：核心问题是处理好政府和市场的关系，使市场在资源配置中起决定性作用，更好发挥政府作用。\n（5）坚持正确处理改革发展稳定关系：改革是动力，发展是目的，稳定是前提。要加强顶层设计和摸着石头过河相结合，整体推进和重点突破相促进。" },
+            { id: 17, q: "论述发展全过程人民民主的重要意义及实践要求。", ans: "重要意义：\n（1）是社会主义民主政治的本质属性，体现了人民当家作主的本质。\n（2）是最广泛、最真实、最管用的民主，有效防止了西方民主的弊端。\n（3）是实现国家治理体系和治理能力现代化的重要支撑。\n实践要求：\n（1）坚持和完善根本政治制度、基本政治制度：坚持人民代表大会制度、中国共产党领导的多党合作和政治协商制度、民族区域自治制度、基层群众自治制度，为全过程人民民主提供制度保障。\n（2）贯通民主各环节：将民主选举、民主协商、民主决策、民主管理、民主监督各个环节彼此贯通起来，确保人民在国家治理和社会治理的各方面都能有效参与。\n（3）扩大人民有序政治参与：保证人民依法实行民主选举、民主协商、民主决策、民主管理、民主监督，拓宽民主渠道，丰富民主形式。\n（4）推进法治中国建设：坚持依法治国、依法执政、依法行政共同推进，为全过程人民民主提供法治保障。" },
+            { id: 18, q: "论述推动社会主义文化繁荣兴盛的具体路径。", ans: "（1）建设具有强大凝聚力和引领力的社会主义意识形态：巩固马克思主义在意识形态领域的指导地位，落实意识形态工作责任制。\n（2）广泛践行社会主义核心价值观：把社会主义核心价值观融入社会发展各方面，转化为人们的情感认同和行为习惯。\n（3）提高全社会文明程度：实施公民道德建设工程，弘扬中华传统美德，加强家庭家教家风建设，深化网络文明建设。\n（4）繁荣发展文化事业和文化产业：坚持以人民为中心的创作导向，推出更多增强人民精神力量的优秀作品。健全现代公共文化服务体系，创新实施文化惠民工程。\n（5）增强中华文明传播力影响力：讲好中国故事、传播好中国声音，展现可信、可爱、可敬的中国形象。深化文明交流互鉴，推动中华文化更好走向世界。" },
+            { id: 19, q: "结合材料，论述如何理解“江山就是人民，人民就是江山”。", ans: "（1）深刻揭示了党的性质宗旨：作为马克思主义政党，中国共产党来自人民、植根人民、服务人民。党的根基在人民、血脉在人民、力量在人民。\n（2）总结了党的百年奋斗历史经验：我们党的百年历史，就是一部践行党的初心使命的历史，就是一部党与人民心连心、同呼吸、共命运的历史。赢得人民信任，得到人民支持，党就能够克服任何困难，无往而不胜。\n（3）明确了新时代奋斗的价值取向：必须坚持发展为了人民、发展依靠人民、发展成果由人民共享。要把人民对美好生活的向往作为奋斗目标，推动共同富裕取得更为明显的实质性进展。\n（4）对全党提出的实践要求：要求我们始终坚持以人民为中心的发展思想，坚持群众路线，尊重人民主体地位和首创精神，永远保持同人民群众的血肉联系。" },
+            { id: 20, q: "试论述作为新时代青年，应如何为实现中华民族伟大复兴贡献力量。", ans: "（1）坚定理想信念：要树立对马克思主义的信仰、对中国特色社会主义的信念、对中华民族伟大复兴中国梦的信心，将个人理想融入国家发展大局。\n（2）练就过硬本领：珍惜韶华，勤奋学习，掌握科学文化知识和专业技能，提高内在素质，使自己的思维视野、思想观念、认识水平跟上越来越快的时代发展。\n（3）勇于创新创造：要有敢为人先的锐气，勇于解放思想、与时俱进，敢于上下求索、开拓进取，在立足本职的创新创造中不断积累经验、取得成果。\n（4）矢志艰苦奋斗：梦想从学习开始，事业靠本领成就。要不怕困难，勇于到条件艰苦的基层、国家建设的一线、项目攻关的前沿去经受锻炼、增长才干。\n（5）锤炼品德修为：自觉树立和践行社会主义核心价值观，明大德、守公德、严私德，追求更有高度、更有境界、更有品位的人生，让清风正气、蓬勃朝气遍布全社会。" }
+        ]
+    };
 
-        // 全局状态
-        let currentCategory = null;
-        let currentQuestionIndex = -1;
-        let questions = [];
-        let userAnswers = [];
-        let correctCount = 0;
+    // --- App Logic ---
 
-        // 初始化分类列表
-        function initCategories() {
-            for (const category in questionData) {
-                const button = document.createElement('button');
-                button.className = 'btn-hover bg-white hover:bg-primary hover:text-white text-dark font-medium py-2 px-4 rounded-lg border border-gray-300 shadow-sm transition-all duration-300';
-                button.innerHTML = `<i class="fa-solid fa-list-ul mr-2"></i>${category}`;
-                button.addEventListener('click', () => startCategory(category));
-                categoryListElement.appendChild(button);
-            }
-        }
+    const container = document.getElementById('quiz-container');
+    const tabBtns = document.querySelectorAll('.tab-btn');
 
-        // 开始一个新的分类
-        function startCategory(category) {
-            currentCategory = category;
-            questions = [...questionData[category]]; // 复制题目数组，避免修改原始数据
-            currentQuestionIndex = -1;
-            userAnswers = [];
-            correctCount = 0;
+    // Current State
+    let currentTab = 'single';
+
+    // Initialize
+    renderQuestions('single');
+
+    function switchTab(type) {
+        currentTab = type;
+        
+        // Update Buttons
+        tabBtns.forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+
+        // Render Content
+        renderQuestions(type);
+    }
+
+    function renderQuestions(type) {
+        container.innerHTML = '';
+        const questions = quizData[type];
+
+        questions.forEach((item, index) => {
+            const card = document.createElement('div');
+            card.className = 'question-card active-type';
             
-            // 更新UI
-            initialPromptElement.classList.add('hidden');
-            questionCardElement.classList.remove('hidden');
-            currentCategoryElement.textContent = category;
-            
-            updateProgress();
-            loadNextQuestion();
-        }
+            // Header
+            let title = `<div class="q-title"><span class="q-type-badge">${getTypeName(type)}</span> ${index + 1}. ${item.q}</div>`;
+            card.innerHTML = title;
 
-        // 加载下一题
-        function loadNextQuestion() {
-            currentQuestionIndex++;
-            
-            if (currentQuestionIndex < questions.length) {
-                const question = questions[currentQuestionIndex];
-                
-                // 更新题目信息
-                currentQuestionCountElement.textContent = `第 ${currentQuestionIndex + 1}/${questions.length} 题`;
-                questionTextElement.textContent = question.question;
-                
-                // 生成选项
-                optionsContainerElement.innerHTML = '';
-                question.options.forEach((option, index) => {
-                    const optionElement = document.createElement('div');
-                    optionElement.className = 'option btn-hover p-3 border border-gray-300 rounded-lg cursor-pointer transition-all duration-200 hover:border-primary hover:bg-primary/5';
-                    optionElement.innerHTML = `
-                        <span class="inline-block w-6 h-6 text-center mr-2 border border-gray-300 rounded-full">${String.fromCharCode(65 + index)}</span>
-                        <span>${option}</span>
-                    `;
-                    optionElement.dataset.answer = option;
-                    optionElement.addEventListener('click', () => checkAnswer(option));
-                    optionsContainerElement.appendChild(optionElement);
-                });
-                
-                // 重置UI状态
-                nextBtnElement.classList.add('hidden');
-                explanationContainerElement.classList.add('hidden');
-                optionsContainerElement.querySelectorAll('.option').forEach(option => {
-                    option.classList.remove('bg-success', 'bg-danger', 'bg-primary/10', 'border-success', 'border-danger', 'border-primary');
-                    option.style.pointerEvents = 'auto'; // 重新启用选项点击
-                });
-
+            // Content based on type
+            if(type === 'single' || type === 'judge') {
+                renderSingleChoice(card, item, type);
+            } else if (type === 'multi') {
+                renderMultiChoice(card, item);
             } else {
-                // 完成所有题目
-                questionTextElement.innerHTML = `<i class="fa-solid fa-flag-checkered text-2xl text-primary mr-2"></i>恭喜！你已完成所有题目！`;
-                optionsContainerElement.innerHTML = `
-                    <div class="bg-success/10 border border-success text-success p-4 rounded-lg text-center">
-                        <p class="text-xl font-bold">正确率: ${Math.round((correctCount / questions.length) * 100)}%</p>
-                        <p class="mt-2">答对: ${correctCount} / 答错: ${questions.length - correctCount}</p>
-                    </div>
-                `;
-                nextBtnElement.innerHTML = `<i class="fa-solid fa-redo mr-2"></i>重新练习`;
-                nextBtnElement.onclick = () => startCategory(currentCategory);
-                nextBtnElement.classList.remove('hidden');
+                renderTextQuestion(card, item);
             }
+
+            container.appendChild(card);
+        });
+    }
+
+    function getTypeName(type) {
+        if(type === 'single') return '单选';
+        if(type === 'multi') return '多选';
+        if(type === 'judge') return '辨析';
+        if(type === 'short') return '简答/论述';
+        return '';
+    }
+
+    // --- Renderers ---
+
+    function renderSingleChoice(card, item, type) {
+        const ul = document.createElement('ul');
+        ul.className = 'options';
+
+        let options = item.opts;
+        if(type === 'judge') {
+            options = ["正确", "错误"];
         }
 
-        // 检查答案
-        function checkAnswer(userAnswer) {
-            const question = questions[currentQuestionIndex];
-            const isCorrect = userAnswer === question.answer;
+        options.forEach(opt => {
+            const li = document.createElement('li');
+            li.className = 'option-item';
+            li.textContent = opt;
             
-            // 记录答案
-            userAnswers.push(userAnswer);
-            if (isCorrect) correctCount++;
-            
-            // 更新选项UI
-            const options = optionsContainerElement.querySelectorAll('.option');
-            options.forEach(option => {
-                const optionAnswer = option.dataset.answer;
-                option.style.pointerEvents = 'none'; // 禁用所有选项点击
+            li.onclick = function() {
+                if(card.dataset.answered) return; // Prevent re-answering
+                card.dataset.answered = true;
+
+                // Determine chosen value
+                let chosenVal = "";
+                if(type === 'single') {
+                    // Extract "A" from "A. xxx"
+                    chosenVal = opt.split('.')[0].trim(); 
+                } else {
+                    chosenVal = opt; // "正确" or "错误"
+                }
+
+                // Check answer
+                const isCorrect = (chosenVal === item.ans);
                 
-                if (optionAnswer === question.answer) {
-                    option.classList.add('bg-success', 'border-success');
-                } else if (optionAnswer === userAnswer && !isCorrect) {
-                    option.classList.add('bg-danger', 'border-danger');
+                if(isCorrect) {
+                    li.classList.add('correct');
+                } else {
+                    li.classList.add('wrong');
+                    // Highlight correct one
+                    Array.from(ul.children).forEach(child => {
+                        let val = type === 'single' ? child.textContent.split('.')[0].trim() : child.textContent;
+                        if(val === item.ans) child.classList.add('correct');
+                    });
+                }
+
+                // Show analysis
+                card.querySelector('.analysis-box').style.display = 'block';
+            };
+
+            ul.appendChild(li);
+        });
+
+        card.appendChild(ul);
+        appendAnalysis(card, item.ans, item.expl);
+    }
+
+    function renderMultiChoice(card, item) {
+        const ul = document.createElement('ul');
+        ul.className = 'options';
+        
+        // State for this question
+        let selected = new Set();
+
+        item.opts.forEach(opt => {
+            const li = document.createElement('li');
+            li.className = 'option-item';
+            li.textContent = opt;
+            const optLetter = opt.split('.')[0].trim();
+
+            li.onclick = function() {
+                if(card.dataset.answered) return;
+
+                if(selected.has(optLetter)) {
+                    selected.delete(optLetter);
+                    li.classList.remove('selected');
+                } else {
+                    selected.add(optLetter);
+                    li.classList.add('selected');
+                }
+            };
+            ul.appendChild(li);
+        });
+
+        const submitBtn = document.createElement('button');
+        submitBtn.className = 'btn-submit';
+        submitBtn.textContent = '提交答案';
+        submitBtn.onclick = function() {
+            if(card.dataset.answered) return;
+            card.dataset.answered = true;
+
+            const userAns = Array.from(selected).sort().join('');
+            const correctAns = item.ans.sort().join('');
+            
+            const isCorrect = (userAns === correctAns);
+
+            // UI Feedback
+            Array.from(ul.children).forEach(li => {
+                const letter = li.textContent.split('.')[0].trim();
+                // If this is a correct answer
+                if(item.ans.includes(letter)) {
+                    li.classList.add('correct');
+                }
+                // If user selected this but it's wrong (not in correct list)
+                else if(selected.has(letter) && !item.ans.includes(letter)) {
+                    li.classList.add('wrong');
                 }
             });
-            
-            // 显示解析
-            explanationContainerElement.classList.remove('hidden');
-            if (isCorrect) {
-                explanationIconElement.className = 'fa-solid fa-check-circle text-success';
-                explanationTitleElement.textContent = '回答正确!';
-                explanationTitleElement.className = 'text-success';
+
+            card.querySelector('.analysis-box').style.display = 'block';
+            this.style.display = 'none'; // Hide button after submit
+        };
+
+        card.appendChild(ul);
+        card.appendChild(submitBtn);
+        appendAnalysis(card, item.ans.join('、'), item.expl);
+    }
+
+    function renderTextQuestion(card, item) {
+        const btn = document.createElement('button');
+        btn.className = 'btn-show-ans';
+        btn.textContent = '显示答案';
+        
+        const ansArea = document.createElement('div');
+        ansArea.className = 'analysis-box text-answer-area';
+        ansArea.innerHTML = `<strong>答案要点：</strong><br>${item.ans}`;
+
+        btn.onclick = function() {
+            if(ansArea.style.display === 'block') {
+                ansArea.style.display = 'none';
+                btn.textContent = '显示答案';
             } else {
-                explanationIconElement.className = 'fa-solid fa-times-circle text-danger';
-                explanationTitleElement.textContent = '回答错误';
-                explanationTitleElement.className = 'text-danger';
+                ansArea.style.display = 'block';
+                btn.textContent = '隐藏答案';
             }
-            correctAnswerElement.textContent = `正确答案: ${question.answer}`;
-            explanationTextElement.textContent = question.explanation;
-            
-            // 显示下一题按钮
-            nextBtnElement.classList.remove('hidden');
-            nextBtnElement.onclick = loadNextQuestion;
-            
-            // 更新进度
-            updateProgress();
-        }
+        };
 
-        // 更新进度信息
-        function updateProgress() {
-            const totalAnswered = userAnswers.length;
-            const totalQuestions = questions.length || 0;
-            const accuracy = totalAnswered > 0 ? Math.round((correctCount / totalAnswered) * 100) : 0;
-            
-            progressTextElement.textContent = `${totalAnswered}/${totalQuestions}`;
-            progressBarElement.style.width = `${totalAnswered / totalQuestions * 100}%`;
-            accuracyTextElement.textContent = `${accuracy}%`;
-        }
+        card.appendChild(btn);
+        card.appendChild(ansArea);
+    }
 
-        // 初始化应用
-        function initApp() {
-            initCategories();
-        }
+    function appendAnalysis(card, answerText, explanation) {
+        const box = document.createElement('div');
+        box.className = 'analysis-box';
+        box.innerHTML = `<div><strong>正确答案：</strong> ${answerText}</div>
+                         <div style="margin-top:10px;"><strong>解析：</strong> ${explanation}</div>`;
+        card.appendChild(box);
+    }
 
-        // 当页面加载完成后初始化
-        document.addEventListener('DOMContentLoaded', initApp);
-    </script>
+</script>
+
 </body>
 </html>
